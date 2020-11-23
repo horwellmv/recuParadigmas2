@@ -1,0 +1,1 @@
+# recuParadigmas2
