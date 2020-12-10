@@ -13,17 +13,17 @@ def decodificar(archivoCodigo):
 
             for i in codificadoCsv:
 
-                mapeo = {
+                eliminar = {
                     ord ('?'): None,
                     ord ('%'): None,
                     ord ('2'): None,
                     ord ('0'): " "
                 }
-                index0 = i[0].translate(mapeo)
-                index1 = i[1].translate(mapeo)
+                index0 = i[0].translate(eliminar)
+                index1 = i[1].translate(eliminar)
                 index2 = i[2]
 
-                print (f"\t{index0}, {index1}, {index2}")
+                print (f"\t{index0},  {index1},  {index2}")
 
         return
 
@@ -34,17 +34,13 @@ def decodificar(archivoCodigo):
 
 
 
-
+# -------------------- Funcion crea lista de diccionarios con datos limpios -----
 
 
 
 def analizar(archivoCodigo):
 
-
-
     print("\tANALIZANDO ARCHIVO .CSV\n")
-
-
     try:
         listaDicionarios =[]
         cabeceras = ["beneficiario", "prestacion", "monto"]
@@ -71,49 +67,31 @@ def analizar(archivoCodigo):
                 listaDicionarios.append(diccionario)
 
 
-        with open("analisis.csv", "w") as f:
-            nuevoAnalisis = csv.DictWriter(f,fieldnames=cabeceras)
-
-            nuevoAnalisis.writeheader()
-            nuevoAnalisis.writerows(listaDicionarios)
-
-
-        print(f"\t.csv ha sido creado con exito. ")
         print(listaDicionarios)
+        return #nuevoArchivo(listaDicionarios)
 
 
 
     except FileNotFoundError:
         print("No se pudo abrir el archivo, o no existe.")
         return
+# --------------------- Funcion Nuevo Archivo -------------------3.3
 
+def nuevoArchivo(listaDeDatos):
+    nuevaLista = []
+    cabecera = ["beneficiario","total","auditoria"]
+    with open("verificado.csv", "w") as newF
+        nuevoCsv = csv.DictWriter(newF, fieldnames= cabecera)
 
-def nuevoArchivo(archivoAnalisis):
-    cabecera2 = ["beneficiario","total","auditoria"]
-    with open("verificado.csv", "w") as nuevoF, open(archivoAnalisis) as origen:
-        nuevoCsv = csv.DictWriter(nuevoF, fieldnames= cabecera2)
-        origenCsv = csv.DictReader(origen)
-
-        lineaO = next(origenCsv, None)
-        lineaN = next(nuevoCsv, None)
-
-        monto = 0 
-        while lineaO:
-
-                        while alumno:
-                            print(f"{alumno[0]}")
-                            if not nota or nota[0] != alumno[0]:
-                                print("\tNo se registran notas")
-
-                            while nota and nota[0] == alumno[0]:
-                                print(f"\t{alumno[0]} en {nota[1]}: {nota[2]}")
-                                nota = next(notas_csv, None)
-                            alumno = next(alumnos_csv, None)
+        for i in listaDeDatos:
+            
 
 
 
 
 
+
+# ----------------------- Funcion imprimir -------------------------- 4 ------
 def imprimir():
     print("Imprimimos")
     return
